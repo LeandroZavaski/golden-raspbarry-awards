@@ -1,7 +1,7 @@
 # Golden Raspberry Awards API
 
-![CI](https://github.com/SEU_USUARIO/golden-raspberry-awards/actions/workflows/ci.yml/badge.svg)
-[![codecov](https://codecov.io/gh/SEU_USUARIO/golden-raspberry-awards/branch/main/graph/badge.svg)](https://codecov.io/gh/SEU_USUARIO/golden-raspberry-awards)
+![CI](https://github.com/LeandroZavaski/golden-raspberry-awards/actions/workflows/ci.yml/badge.svg)
+[![codecov](https://codecov.io/gh/LeandroZavaski/golden-raspberry-awards/branch/main/graph/badge.svg)](https://codecov.io/gh/LeandroZavaski/golden-raspberry-awards)
 
 API RESTful para leitura da lista de indicados e vencedores da categoria **Pior Filme** do Golden Raspberry Awards.
 
@@ -14,7 +14,7 @@ API RESTful para leitura da lista de indicados e vencedores da categoria **Pior 
 
 ### Clone o repositório
 ```bash
-git clone https://github.com/SEU_USUARIO/golden-raspberry-awards.git
+git clone https://github.com/LeandroZavaski/golden-raspberry-awards.git
 cd golden-raspberry-awards
 ```
 
