@@ -30,14 +30,14 @@ namespace GoldenRaspberryAwards.Infrastructure.Data
         private void InitializeDatabase()
         {
             using var command = _keepAliveConnection.CreateCommand();
-            command.CommandText = SqlQuery.CreateTable;
+            command.CommandText = SqlDataQuery.CreateTable;
             command.ExecuteNonQuery();
         }
 
         public void ClearDatabase()
         {
             using var command = _keepAliveConnection.CreateCommand();
-            command.CommandText = SqlQuery.DeleteTable;
+            command.CommandText = SqlDataQuery.DeleteTable;
             command.ExecuteNonQuery();
         }
 

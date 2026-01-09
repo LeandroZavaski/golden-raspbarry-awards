@@ -1,6 +1,6 @@
 ﻿namespace GoldenRaspberryAwards.Infrastructure.Data.Queries
 {
-    public static class SqlQuery
+    public static class SqlDataQuery
     {
         public const string CreateTable = @"
             CREATE TABLE IF NOT EXISTS Movies (
