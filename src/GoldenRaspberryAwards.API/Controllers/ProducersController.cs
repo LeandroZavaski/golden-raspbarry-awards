@@ -21,5 +21,4 @@ namespace GoldenRaspberryAwards.API.Controllers
             return Ok(result);
         }
     }
-
 }

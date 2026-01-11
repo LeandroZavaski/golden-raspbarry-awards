@@ -1,4 +1,5 @@
 ﻿using GoldenRaspberryAwards.Domain.Interfaces;
+using Scalar.AspNetCore;
 
 namespace GoldenRaspberryAwards.API.Extensions
 {
@@ -8,8 +9,8 @@ namespace GoldenRaspberryAwards.API.Extensions
         {
             if (app.Environment.IsDevelopment())
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
+                app.MapOpenApi();
+                app.MapScalarApiReference();
             }
 
             app.UseHttpsRedirection();

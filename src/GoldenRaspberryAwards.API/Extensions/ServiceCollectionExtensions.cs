@@ -1,5 +1,7 @@
 ﻿using GoldenRaspberryAwards.Domain.Interfaces;
 using GoldenRaspberryAwards.Infrastructure.Data;
+using GoldenRaspberryAwards.Infrastructure.Pipelines;
+using GoldenRaspberryAwards.Infrastructure.Pipelines.Steps;
 using GoldenRaspberryAwards.Infrastructure.Repositories;
 using GoldenRaspberryAwards.Infrastructure.Services;
 
@@ -17,15 +19,29 @@ namespace GoldenRaspberryAwards.API.Extensions
             .AddSingleton<IDbConnectionFactory>(sp => new SqliteConnectionFactory("Data Source=GoldenRaspberryAwards;Mode=Memory;Cache=Shared"))
             .AddScoped<IMovieRepository, MovieRepository>();
 
-        public static IServiceCollection AddServices(this IServiceCollection services) => services
-            .AddScoped<ICsvImportService, CsvImportService>()
-            .AddScoped<IProducerService, ProducerService>();
+        public static IServiceCollection AddServices(this IServiceCollection services)
+        {
+            // Pipeline Steps (cada etapa do processamento)
+            services.AddScoped<FetchWinnersStep>();
+            services.AddScoped<AggregateProducerWinsStep>();
+            services.AddScoped<CalculateIntervalsStep>();
+            services.AddScoped<BuildResponseStep>();
+
+            // Pipeline completo
+            services.AddScoped<ProducerIntervalPipeline>();
+
+            // Serviços principais
+            services.AddScoped<ICsvImportService, CsvImportService>();
+            services.AddScoped<IProducerService, ProducerService>();
+
+            return services;
+        }
 
         public static IServiceCollection AddApiServices(this IServiceCollection services)
         {
             services.AddControllers();
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+            services.AddOpenApi();
 
             return services;
         }
