@@ -2,7 +2,6 @@
 using GoldenRaspberryAwards.Infrastructure.Data;
 using GoldenRaspberryAwards.Infrastructure.Repositories;
 using GoldenRaspberryAwards.Infrastructure.Services;
-using Microsoft.AspNetCore.Connections;
 
 namespace GoldenRaspberryAwards.API.Extensions
 {
@@ -31,5 +30,4 @@ namespace GoldenRaspberryAwards.API.Extensions
             return services;
         }
     }
-}
 }
