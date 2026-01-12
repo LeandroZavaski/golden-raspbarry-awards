@@ -17,8 +17,8 @@ namespace GoldenRaspberryAwards.Infrastructure.Pipelines.Steps
 
             var response = new ProducerIntervalResponseDto
             {
-                Min = input.Where(i => i.Interval == minInterval).ToList(),
-                Max = input.Where(i => i.Interval == maxInterval).ToList()
+                Min = [.. input.Where(i => i.Interval == minInterval)],
+                Max = [.. input.Where(i => i.Interval == maxInterval)]
             };
 
             return Task.FromResult(response);

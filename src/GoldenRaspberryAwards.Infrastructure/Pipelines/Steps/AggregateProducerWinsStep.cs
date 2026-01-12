@@ -5,13 +5,7 @@ namespace GoldenRaspberryAwards.Infrastructure.Pipelines.Steps
     public class AggregateProducerWinsStep
         : IProducerIntervalPipelineStep<IEnumerable<Movie>, Dictionary<string, List<int>>>
     {
-        public Task<Dictionary<string, List<int>>> ExecuteAsync(IEnumerable<Movie> input)
-        {
-            var result = AggregateWinsByProducer(input);
-            return Task.FromResult(result);
-        }
-
-        private static Dictionary<string, List<int>> AggregateWinsByProducer(IEnumerable<Movie> winners)
+        public async Task<Dictionary<string, List<int>>> ExecuteAsync(IEnumerable<Movie> winners)
         {
             var producerWins = new Dictionary<string, List<int>>(StringComparer.OrdinalIgnoreCase);
 
@@ -34,7 +28,6 @@ namespace GoldenRaspberryAwards.Infrastructure.Pipelines.Steps
                     producerWins[trimmedProducer].Add(movie.Year);
                 }
             }
-
             return producerWins;
         }
 
