@@ -67,7 +67,6 @@ namespace GoldenRaspberryAwards.Tests.Integration
         {
             var baseDir = AppContext.BaseDirectory;
 
-            // Try both lowercase and capitalized versions for cross-platform compatibility
             var possibleNames = new[] { "movielist.csv", "Movielist.csv" };
 
             foreach (var fileName in possibleNames)

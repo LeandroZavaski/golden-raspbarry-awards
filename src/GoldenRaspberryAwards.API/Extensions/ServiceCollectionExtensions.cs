@@ -1,9 +1,11 @@
 ﻿using GoldenRaspberryAwards.Domain.Interfaces;
 using GoldenRaspberryAwards.Infrastructure.Data;
+using GoldenRaspberryAwards.Infrastructure.Parsers;
 using GoldenRaspberryAwards.Infrastructure.Pipelines;
 using GoldenRaspberryAwards.Infrastructure.Pipelines.Steps;
 using GoldenRaspberryAwards.Infrastructure.Repositories;
 using GoldenRaspberryAwards.Infrastructure.Services;
+using GoldenRaspberryAwards.Infrastructure.Validators;
 
 namespace GoldenRaspberryAwards.API.Extensions
 {
@@ -33,6 +35,10 @@ namespace GoldenRaspberryAwards.API.Extensions
             // Serviços principais
             services.AddScoped<ICsvImportService, CsvImportService>();
             services.AddScoped<IProducerService, ProducerService>();
+
+            // CSV Components
+            services.AddScoped<ICsvValidator, CsvValidator>();
+            services.AddScoped<ICsvParser, MovieCsvParser>();
 
             return services;
         }
