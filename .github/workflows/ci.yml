@@ -1,4 +1,4 @@
-name: CI
+﻿name: CI
 
 on:
   push:
@@ -23,11 +23,37 @@ jobs:
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
+    - name: Verify test data exists
+      run: |
+        echo "=== Checking test data files ==="
+        ls -la tests/GoldenRaspberryAwards.Tests/Data/ || echo "Data folder not found!"
+        if [ -f "tests/GoldenRaspberryAwards.Tests/Data/movielist.csv" ]; then
+          echo "✓ CSV file found"
+          wc -l tests/GoldenRaspberryAwards.Tests/Data/movielist.csv
+        else
+          echo "✗ CSV file NOT found"
+          find tests/ -name "*.csv"
+        fi
+
     - name: Restore dependencies
       run: dotnet restore
 
     - name: Build
       run: dotnet build --no-restore --configuration Release
+
+    - name: Verify file copied to output
+      run: |
+        echo "=== Checking build output ==="
+        OUTPUT_DIR="tests/GoldenRaspberryAwards.Tests/bin/Release/net10.0"
+        if [ -d "$OUTPUT_DIR" ]; then
+          ls -la "$OUTPUT_DIR/Data/" || echo "Data folder not in output!"
+          if [ -f "$OUTPUT_DIR/Data/movielist.csv" ]; then
+            echo "✓ CSV file copied to output"
+          else
+            echo "✗ CSV file NOT in output"
+            find "$OUTPUT_DIR" -name "*.csv" || echo "No CSV files in output"
+          fi
+        fi
 
     - name: Run tests
       run: dotnet test --configuration Release --no-restore --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
@@ -41,7 +67,6 @@ jobs:
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-  # Multi-platform testing
   test-multiplatform:
     name: Test on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
