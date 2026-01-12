@@ -1,6 +1,6 @@
 using GoldenRaspberryAwards.Domain.Entities;
 
-namespace GoldenRaspberryAwards.Infrastructure.Pipelines.Steps
+namespace GoldenRaspberryAwards.Domain.Pipelines.Steps
 {
     public class AggregateProducerWinsStep
         : IProducerIntervalPipelineStep<IEnumerable<Movie>, Dictionary<string, List<int>>>

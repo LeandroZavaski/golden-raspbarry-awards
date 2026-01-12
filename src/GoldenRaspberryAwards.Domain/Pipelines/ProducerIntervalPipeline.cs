@@ -1,8 +1,8 @@
 using GoldenRaspberryAwards.Domain.Dtos;
-using GoldenRaspberryAwards.Infrastructure.Pipelines.Steps;
+using GoldenRaspberryAwards.Domain.Pipelines.Steps;
 using Microsoft.Extensions.Logging;
 
-namespace GoldenRaspberryAwards.Infrastructure.Pipelines
+namespace GoldenRaspberryAwards.Domain.Pipelines
 {
     public class ProducerIntervalPipeline
     {

@@ -1,8 +1,8 @@
 ﻿using GoldenRaspberryAwards.Domain.Dtos;
 using GoldenRaspberryAwards.Domain.Interfaces;
-using GoldenRaspberryAwards.Infrastructure.Pipelines;
+using GoldenRaspberryAwards.Domain.Pipelines;
 
-namespace GoldenRaspberryAwards.Infrastructure.Services
+namespace GoldenRaspberryAwards.Domain.Services
 {
     public class ProducerService(ProducerIntervalPipeline pipeline) : IProducerService
     {

@@ -1,6 +1,6 @@
 using GoldenRaspberryAwards.Domain.Dtos;
 
-namespace GoldenRaspberryAwards.Infrastructure.Pipelines.Steps
+namespace GoldenRaspberryAwards.Domain.Pipelines.Steps
 {
     public class CalculateIntervalsStep
         : IProducerIntervalPipelineStep<Dictionary<string, List<int>>, List<ProducerIntervalDto>>

@@ -1,7 +1,7 @@
 using GoldenRaspberryAwards.Domain.Entities;
 using GoldenRaspberryAwards.Domain.Interfaces;
 
-namespace GoldenRaspberryAwards.Infrastructure.Pipelines.Steps
+namespace GoldenRaspberryAwards.Domain.Pipelines.Steps
 {
     public class FetchWinnersStep(IMovieRepository movieRepository) 
         : IProducerIntervalPipelineStep<object?, IEnumerable<Movie>>

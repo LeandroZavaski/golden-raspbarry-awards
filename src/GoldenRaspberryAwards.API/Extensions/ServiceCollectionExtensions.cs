@@ -1,8 +1,9 @@
 ﻿using GoldenRaspberryAwards.Domain.Interfaces;
+using GoldenRaspberryAwards.Domain.Pipelines;
+using GoldenRaspberryAwards.Domain.Pipelines.Steps;
+using GoldenRaspberryAwards.Domain.Services;
 using GoldenRaspberryAwards.Infrastructure.Data;
 using GoldenRaspberryAwards.Infrastructure.Parsers;
-using GoldenRaspberryAwards.Infrastructure.Pipelines;
-using GoldenRaspberryAwards.Infrastructure.Pipelines.Steps;
 using GoldenRaspberryAwards.Infrastructure.Repositories;
 using GoldenRaspberryAwards.Infrastructure.Services;
 using GoldenRaspberryAwards.Infrastructure.Validators;
