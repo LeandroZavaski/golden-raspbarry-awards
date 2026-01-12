@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-  	<None Update="Data\**\*">
-  		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  	<None Update="Data/movielist.csv">
+  		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
   	</None>
   </ItemGroup>
 
@@ -30,12 +30,6 @@
     <ProjectReference Include="..\..\src\GoldenRaspberryAwards.API\GoldenRaspberryAwards.API.csproj" />
     <ProjectReference Include="..\..\src\GoldenRaspberryAwards.Domain\GoldenRaspberryAwards.Domain.csproj" />
     <ProjectReference Include="..\..\src\GoldenRaspberryAwards.Infrastructure\GoldenRaspberryAwards.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Data\movielist.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
