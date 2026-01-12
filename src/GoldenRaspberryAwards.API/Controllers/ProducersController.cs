@@ -14,7 +14,7 @@ namespace GoldenRaspberryAwards.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAwardsInterval()
         {
-            _logger.LogInformation("Obtendo intervalos de prêmios dos produtores");
+            _logger.LogInformation("Fetching producer award intervals");
 
             var result = await _producerService.GetProducerIntervalsAsync();
 

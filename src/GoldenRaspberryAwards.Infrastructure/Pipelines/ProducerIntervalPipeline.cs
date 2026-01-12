@@ -28,24 +28,24 @@ namespace GoldenRaspberryAwards.Infrastructure.Pipelines
 
         public async Task<ProducerIntervalResponseDto> ExecuteAsync()
         {
-            _logger.LogDebug("Iniciando pipeline de análise de intervalos de produtores");
+            _logger.LogDebug("Starting producer interval analysis pipeline");
 
             try
             {
-                _logger.LogDebug("Etapa 1/4: Buscando filmes vencedores");
+                _logger.LogDebug("Step 1/4: Fetching winning movies");
                 var winners = await _fetchWinnersStep.ExecuteAsync(null);
 
-                _logger.LogDebug("Etapa 2/4: Agregando vitórias por produtor");
+                _logger.LogDebug("Step 2/4: Aggregating wins by producer");
                 var producerWins = await _aggregateStep.ExecuteAsync(winners);
 
-                _logger.LogDebug("Etapa 3/4: Calculando intervalos entre vitórias");
+                _logger.LogDebug("Step 3/4: Calculating intervals between wins");
                 var intervals = await _calculateStep.ExecuteAsync(producerWins);
 
-                _logger.LogDebug("Etapa 4/4: Construindo resposta final");
+                _logger.LogDebug("Step 4/4: Building final response");
                 var response = await _buildResponseStep.ExecuteAsync(intervals);
 
                 _logger.LogInformation(
-                    "Pipeline concluído com sucesso. Min: {MinCount}, Max: {MaxCount}",
+                    "Pipeline completed successfully. Min: {MinCount}, Max: {MaxCount}",
                     response.Min?.Count ?? 0,
                     response.Max?.Count ?? 0);
 
@@ -53,7 +53,7 @@ namespace GoldenRaspberryAwards.Infrastructure.Pipelines
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erro ao executar pipeline de intervalos de produtores");
+                _logger.LogError(ex, "Error executing producer interval pipeline");
                 throw;
             }
         }

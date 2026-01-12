@@ -50,7 +50,7 @@ namespace GoldenRaspberryAwards.Tests.Integration
             }
             else
             {
-                throw new FileNotFoundException($"Arquivo CSV de teste não encontrado: {csvPath}");
+                throw new FileNotFoundException($"Test CSV file not found: {csvPath}");
             }
         }
 
@@ -67,29 +67,38 @@ namespace GoldenRaspberryAwards.Tests.Integration
         {
             var baseDir = AppContext.BaseDirectory;
 
-            var csvPath = Path.Combine(baseDir, "Data", "movielist.csv");
-            if (File.Exists(csvPath))
-                return csvPath;
+            // Try both lowercase and capitalized versions for cross-platform compatibility
+            var possibleNames = new[] { "movielist.csv", "Movielist.csv" };
+
+            foreach (var fileName in possibleNames)
+            {
+                var csvPath = Path.Combine(baseDir, "Data", fileName);
+                if (File.Exists(csvPath))
+                    return csvPath;
+            }
 
             var currentDir = new DirectoryInfo(baseDir);
             while (currentDir != null)
             {
-                var testPath = Path.Combine(currentDir.FullName, "tests", "GoldenRaspberryAwards.Tests", "Data", "movielist.csv");
-                if (File.Exists(testPath))
-                    return testPath;
+                foreach (var fileName in possibleNames)
+                {
+                    var testPath = Path.Combine(currentDir.FullName, "tests", "GoldenRaspberryAwards.Tests", "Data", fileName);
+                    if (File.Exists(testPath))
+                        return testPath;
 
-                var apiPath = Path.Combine(currentDir.FullName, "src", "GoldenRaspberryAwards.API", "Data", "movielist.csv");
-                if (File.Exists(apiPath))
-                    return apiPath;
+                    var apiPath = Path.Combine(currentDir.FullName, "src", "GoldenRaspberryAwards.API", "Data", fileName);
+                    if (File.Exists(apiPath))
+                        return apiPath;
 
-                var directPath = Path.Combine(currentDir.FullName, "Data", "movielist.csv");
-                if (File.Exists(directPath))
-                    return directPath;
+                    var directPath = Path.Combine(currentDir.FullName, "Data", fileName);
+                    if (File.Exists(directPath))
+                        return directPath;
+                }
 
                 currentDir = currentDir.Parent;
             }
 
-            return csvPath;
+            return Path.Combine(baseDir, "Data", "movielist.csv");
         }
     }
 }

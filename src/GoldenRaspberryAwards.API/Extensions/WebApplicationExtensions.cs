@@ -30,13 +30,13 @@ namespace GoldenRaspberryAwards.API.Extensions
 
             if (File.Exists(csvPath))
             {
-                logger.LogInformation("Importando dados do CSV: {Path}", csvPath);
+                logger.LogInformation("Importing CSV data from: {Path}", csvPath);
                 await csvImportService.ImportAsync(csvPath);
-                logger.LogInformation("Importação concluída com sucesso");
+                logger.LogInformation("Import completed successfully");
             }
             else
             {
-                logger.LogWarning("Arquivo CSV não encontrado em: {Path}", csvPath);
+                logger.LogWarning("CSV file not found at: {Path}", csvPath);
             }
         }
     }
